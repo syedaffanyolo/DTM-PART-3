@@ -23,6 +23,7 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
     @IBOutlet weak var zoomImage: UIImageView!
     @IBOutlet var zoomView: UIView!
     @IBOutlet var blurView: UIVisualEffectView!
+   
     
     
     

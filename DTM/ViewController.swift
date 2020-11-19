@@ -83,7 +83,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             
             Malls.importer.mallsingrimg =  [json.gvmallimage,json.mmmallimage,json.apmallimage,json.oamallimage]
             //print(json)
-            
+            Malls.importer.gvname = json.gvname
+            Malls.importer.gvdis = json.gvdis
+            Malls.importer.gvfloors = json.gvfloors
+                                      
+            Malls.importer.msname = json.mmname
+            Malls.importer.msdis = json.mmdis
+            Malls.importer.msfloors = json.mmfloors
+                                      
+            Malls.importer.anname = json.apname
+            Malls.importer.andis = json.apdis
+            Malls.importer.anfloors = json.apfloors
+                                      
+            Malls.importer.oaname = json.oaname
+            Malls.importer.oadis = json.oadis
+            Malls.importer.omfloors = json.oafloors
             DispatchQueue.main.async {
                 loderfu()
                 performSegue(withIdentifier: "Malls", sender: self)
@@ -152,9 +166,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 //print(json)
                 
                 DispatchQueue.main.async {
-                    loderfu()
+                   
                     performSegue(withIdentifier: "Malls", sender: self)
-                    
+                    loderfu()
                 }
                
             })
@@ -181,7 +195,37 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
                 Malls.importer.mallsindimg =  [json.vsmallimage,json.tcmallimage,json.ccmallimage,json.cmmallimage,json.ammallimage,json.dsmallimage,json.scmallimage,json.pmmallimage]
                 //print(json)
-                
+                Malls.importer.vsname = json.vsname
+                Malls.importer.vsdis = json.vsdis
+                Malls.importer.vsfloors = json.vsfloors
+                                        
+                Malls.importer.tcname = json.tcname
+                Malls.importer.tcdis = json.tcdis
+                Malls.importer.tcfloors = json.tcfloors
+                                        
+                Malls.importer.ccname = json.ccname
+                Malls.importer.ccdis = json.ccdis
+                Malls.importer.ccfloors = json.ccfloors
+                                        
+                Malls.importer.cmname = json.cmname
+                Malls.importer.cmdis = json.cmdis
+                Malls.importer.cmfloors = json.cmfloors
+                                        
+                Malls.importer.dsname = json.dsname
+                Malls.importer.dsdis = json.dsdis
+                Malls.importer.dsfloors = json.dsfloors
+                                        
+                Malls.importer.amname = json.amname
+                Malls.importer.amdis = json.amdis
+                Malls.importer.amfloors = json.amfloors
+                                        
+                Malls.importer.pmname = json.pmname
+                Malls.importer.pmdis = json.pmdis
+                Malls.importer.pmfloors = json.pmfloors
+                                        
+                Malls.importer.scname = json.scname
+                Malls.importer.scdis = json.scdis
+                Malls.importer.scfloors = json.scfloors
                 DispatchQueue.main.async {
                     loderfu()
                     performSegue(withIdentifier: "Malls", sender: self)

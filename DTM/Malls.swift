@@ -198,7 +198,7 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
                         
                       //  futureCell.mallbutton.setTitle(importer.mallsind![indexPath.row], for: .normal)
                         }
-                       
+                        
                     }
                 
             }
