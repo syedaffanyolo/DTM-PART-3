@@ -17,11 +17,12 @@
 		C65E876B256462D9007ECEC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8761256462D9007ECEC4 /* SceneDelegate.swift */; };
 		C65E876C256462D9007ECEC4 /* shopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8762256462D9007ECEC4 /* shopView.swift */; };
 		C65E876D256462D9007ECEC4 /* Malls.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8763256462D9007ECEC4 /* Malls.swift */; };
-		C65E876E256462D9007ECEC4 /* dtmApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8764256462D9007ECEC4 /* dtmApi.swift */; };
+		C65E876E256462D9007ECEC4 /* DtmApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8764256462D9007ECEC4 /* DtmApi.swift */; };
 		C65E876F256462D9007ECEC4 /* cellId.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8765256462D9007ECEC4 /* cellId.swift */; };
 		C65E8770256462D9007ECEC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8766256462D9007ECEC4 /* ViewController.swift */; };
 		C65E8771256462D9007ECEC4 /* MallCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8767256462D9007ECEC4 /* MallCells.swift */; };
 		C65E8772256462D9007ECEC4 /* shopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E8768256462D9007ECEC4 /* shopCell.swift */; };
+		C6F72041256673FE007018F1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F72040256673FE007018F1 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,11 +58,12 @@
 		C65E8761256462D9007ECEC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C65E8762256462D9007ECEC4 /* shopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopView.swift; sourceTree = "<group>"; };
 		C65E8763256462D9007ECEC4 /* Malls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Malls.swift; sourceTree = "<group>"; };
-		C65E8764256462D9007ECEC4 /* dtmApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dtmApi.swift; sourceTree = "<group>"; };
+		C65E8764256462D9007ECEC4 /* DtmApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DtmApi.swift; sourceTree = "<group>"; };
 		C65E8765256462D9007ECEC4 /* cellId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cellId.swift; sourceTree = "<group>"; };
 		C65E8766256462D9007ECEC4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C65E8767256462D9007ECEC4 /* MallCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallCells.swift; sourceTree = "<group>"; };
 		C65E8768256462D9007ECEC4 /* shopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopCell.swift; sourceTree = "<group>"; };
+		C6F72040256673FE007018F1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +117,7 @@
 				C65E875325646177007ECEC4 /* LaunchScreen.storyboard */,
 				C65E875F256462D9007ECEC4 /* AppDelegate.swift */,
 				C65E8765256462D9007ECEC4 /* cellId.swift */,
-				C65E8764256462D9007ECEC4 /* dtmApi.swift */,
+				C65E8764256462D9007ECEC4 /* DtmApi.swift */,
 				C65E8760256462D9007ECEC4 /* floorCell.swift */,
 				C65E8767256462D9007ECEC4 /* MallCells.swift */,
 				C65E8763256462D9007ECEC4 /* Malls.swift */,
@@ -125,6 +127,7 @@
 				C65E8766256462D9007ECEC4 /* ViewController.swift */,
 				C65E875225646177007ECEC4 /* Main.storyboard */,
 				C65E874D2564616E007ECEC4 /* Assets.xcassets */,
+				C6F72040256673FE007018F1 /* DetailView.swift */,
 			);
 			path = DTM;
 			sourceTree = "<group>";
@@ -278,11 +281,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C65E876E256462D9007ECEC4 /* dtmApi.swift in Sources */,
+				C65E876E256462D9007ECEC4 /* DtmApi.swift in Sources */,
 				C65E876D256462D9007ECEC4 /* Malls.swift in Sources */,
 				C65E876A256462D9007ECEC4 /* floorCell.swift in Sources */,
 				C65E8771256462D9007ECEC4 /* MallCells.swift in Sources */,
 				C65E8769256462D9007ECEC4 /* AppDelegate.swift in Sources */,
+				C6F72041256673FE007018F1 /* DetailView.swift in Sources */,
 				C65E876C256462D9007ECEC4 /* shopView.swift in Sources */,
 				C65E876F256462D9007ECEC4 /* cellId.swift in Sources */,
 				C65E8770256462D9007ECEC4 /* ViewController.swift in Sources */,

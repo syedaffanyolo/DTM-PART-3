@@ -9,9 +9,7 @@ import UIKit
 
 
 //node.js api
-let urlforgr = "https://dtmappapi.herokuapp.com/grapi"
-let urlforn = "https://dtmappapi.herokuapp.com/napi"
-let urlford = "https://dtmappapi.herokuapp.com/dapi"
+
 
 
 
@@ -21,7 +19,7 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     
     //all variables here
     var imageArr : [Data]? = []
-    var imageArrForLc : [Data]? = []
+  
     var titleArraygn : [String]? = []
     var titleArrayn : [String]? = []
     var titleArrayd : [String]? = []
@@ -31,9 +29,9 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     
     
     //ui view on which the loader is placed
-    @IBOutlet weak var loderView: UIView!
+    //@IBOutlet weak var loderView: UIView!
     // loader duh
-    @IBOutlet weak var loder: UIActivityIndicatorView!
+    //@IBOutlet weak var loder: UIActivityIndicatorView!
     //outlet for nav bar to change titles
     @IBOutlet weak var navBar: UINavigationItem!
     // scroll lenght changer so all button are hide and used when needed/ basically acesses the lenght feature /height of the view
@@ -51,7 +49,7 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
         // making seprator for cells clear colour
         self.mallTableView.separatorColor = .clear
         // starting loading
-        loder.startAnimating()
+       // loder.startAnimating()
         // blank title for nav
         navBar.title = ""
     }
@@ -112,307 +110,96 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
             
             // checking selected region
             if ViewController.myGlobalVar.region == "Greater Noida"{
-                //networking to get api data
-                let task = URLSession.shared.dataTask(with: URL(string: urlforgr)!, completionHandler: { [self]data, response, error in
-                    guard let data = data, error == nil else{
-                        print("somthin wrong")
-                        return
-                    }
-                    var result: grNoida?
-                    do {
-                        result = try JSONDecoder().decode(grNoida.self, from: data)
-                    } catch  {
-                        print(error)
-                    }
-                    
-                    guard let json = result else{
-                        
-                        return
-                    }
-                    
-                    ///data init 
-                    
-                    /// intializing our gloabl variables to the retrivied data from the api
-                    
-                    
-                    //name of malls in gr noida
-                    importer.mallsingr = [json.gvname,json.mmname,json.apname,json.oaname]
-                    //name of malls in noida
-                   // importer.mallsinn = [json.dmname,json.lcname,json.ggname,json.gpname]
-                    //name of malls in delhi
-                   // importer.mallsind = [json.vsname,json.tcname,json.ccname,json.cmname,json.dsname,json.amname,json.pmname,json.scname]
-                    //images of malls in gr noida
-                    importer.mallsingrimg = [json.gvmallimage,json.mmmallimage,json.apmallimage,json.oamallimage]
-                    //images of malls in noida
-                   // importer.mallsinnimg = [json.dmmallimage,json.lcmallimage,json.ggmallimage,json.gpmallimage]
-                    //images of malls in delhi
-                   // importer.mallsindimg = [json.vsmallimage,json.tcmallimage,json.ccmallimage,json.cmmallimage,json.dsmallimage,json.ammallimage,json.pmmallimage,json.scmallimage]
-                    
-                    // floor images for logix city noida in url from retrived from api as string
-                  //  let lcfloorurl = [URL(string: json.lcfloorimages[0])!,URL(string: json.lcfloorimages[1])!,URL(string: json.lcfloorimages[2])!] // getting the hold of only one
-                    
-                    for i in 0...3{
-                        // taking global var of [string] and converting into url with indexpath as index of the array
-                    let imgurl = URL(string: importer.mallsingrimg![i])!
-                        // converting the var to data
-                        if let data = try? Data(contentsOf: imgurl ){
-                            //appending all the data we get everytime this indexpath loop executes into an [data]
-                            imageArr?.append(data)
-                            // setting the array to gloabal level
-                            importer.dataimg = imageArr
-                        }
-                }
-                            //performing all ui on main thread
-                            DispatchQueue.main.async {
-                                //ensuring this line of code runs only once because there is no need to run thsi in loop everytime
-                                if indexPath.row == 0 {
-                                    navBar.title = "Malls in Greater Noida"
-                                }
-                                // setting the title with the help of our global var initiloiazed previously, here we do it with thehelp of indexpath
-                                if let futureCell = mallTableView.cellForRow(at: indexPath) as? MallCells {
-                                futureCell.mallbutton.setTitle(importer.mallsingr![indexPath.row], for: .normal)
-                                
-                                // setting the backimagiee of button to the data we get evertime in the loop
-                                    futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
-                                }
-                                //stoping the loader while ensuring the loop has ended
-                                if indexPath.row == 3{
-                                    loderfu()
-                                }
-                            }
-                        
-                            
-                            //setting all the needed data to global lvl to be used in other view
-                            
-                    if indexPath.row == 0 {
-                                
-                                importer.gvname = json.gvname
-                                importer.gvdis = json.gvdis
-                                importer.gvfloors = json.gvfloors
-                                
-                                importer.msname = json.mmname
-                                importer.msdis = json.mmdis
-                                importer.msfloors = json.mmfloors
-                                
-                                importer.anname = json.apname
-                                importer.andis = json.apdis
-                                importer.anfloors = json.apfloors
-                                
-                                importer.oaname = json.oaname
-                                importer.oadis = json.oadis
-                                importer.omfloors = json.oafloors
-                            }
-                })
-                task.resume()
+                if indexPath.row == 0 {
+                for i in 0...3{
+                let imgurl = URL(string: importer.mallsingrimg![i])!
+                if let data = try? Data(contentsOf: imgurl ){
 
+                    imageArr?.append(data)
+                   
+                }
+                }
+                    importer.dataimg = imageArr
+                }
+              
+                   
+               
+                    DispatchQueue.main.async { [self] in
+                        if indexPath.row == 0{
+                            navBar.title = "Malls in Greater Noida"
+                        }
+                        if let futureCell = tableView.cellForRow(at: indexPath) as? MallCells {
+                        futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
+                        
+                            futureCell.mallbutton.setTitle(importer.mallsingr![indexPath.row], for: .normal)
+                        
+                       // futureCell.mallbutton.setTitle(importer.mallsinn![indexPath.row], for: .normal)
+                        }
+                       
+                    }
+                    
+                
+                
                 
  
             }else if ViewController.myGlobalVar.region == "Noida"{
-                //networking to get api data
-                let task = URLSession.shared.dataTask(with: URL(string: urlforn)!, completionHandler: { [self]data, response, error in
-                    guard let data = data, error == nil else{
-                        print("somthin wrong")
-                        return
-                    }
-                    var result: grNoida?
-                    do {
-                        result = try JSONDecoder().decode(grNoida.self, from: data)
-                    } catch  {
-                        print(error)
-                    }
-                    
-                    guard let json = result else{
+              
+                if indexPath.row == 0 {
+                for i in 0...3{
+                let imgurl = URL(string: importer.mallsinnimg![i])!
+                if let data = try? Data(contentsOf: imgurl ){
+
+                    imageArr?.append(data)
+                   
+                }
+                }
+                    importer.dataimg = imageArr
+                }
+              
+                   
+               
+                    DispatchQueue.main.async { [self] in
+                        if indexPath.row == 0{
+                            navBar.title = "Malls in Noida"
+                        }
+                        if let futureCell = tableView.cellForRow(at: indexPath) as? MallCells {
+                        futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
                         
-                        return
-                    }
-                    
-                    /// data init
-                    
-                    /// intializing our gloabl variables to the retrivied data from the api
-                    
-                    
-                    //name of malls in gr noida
-                   // importer.mallsingr = [json.gvname,json.mmname,json.apname,json.oaname]
-                    //name of malls in noida
-                    importer.mallsinn = [json.dmname,json.lcname,json.ggname,json.gpname]
-                    //name of malls in delhi
-                   // importer.mallsind = [json.vsname,json.tcname,json.ccname,json.cmname,json.dsname,json.amname,json.pmname,json.scname]
-                    //images of malls in gr noida
-                   // importer.mallsingrimg = [json.gvmallimage,json.mmmallimage,json.apmallimage,json.oamallimage]
-                    //images of malls in noida
-                    importer.mallsinnimg = [json.dmmallimage,json.lcmallimage,json.ggmallimage,json.gpmallimage]
-                    //images of malls in delhi
-                  //  importer.mallsindimg = [json.vsmallimage,json.tcmallimage,json.ccmallimage,json.cmmallimage,json.dsmallimage,json.ammallimage,json.pmmallimage,json.scmallimage]
-                    
-                    // floor images for logix city noida in url from retrived from api as string
-                    let lcfloorurl = [URL(string: json.lcfloorimages[0])!,URL(string: json.lcfloorimages[1])!,URL(string: json.lcfloorimages[2])!] // getting the hold of only one
-                    
-                    for i in 0...3{
-                    let imgurl = URL(string: importer.mallsinnimg![i])!
-                    if let data = try? Data(contentsOf: imgurl ){
-                        
-                        imageArr?.append(data)
-                        importer.dataimg = imageArr
-                    }
-                        DispatchQueue.main.async {
-                            if indexPath.row == 0{
-                                navBar.title = "Malls in Noida"
-                            }
-                            if let futureCell = mallTableView.cellForRow(at: indexPath) as? MallCells {
-                            futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
-                            
-                            
-                            
                             futureCell.mallbutton.setTitle(importer.mallsinn![indexPath.row], for: .normal)
-                            }
-                            if indexPath.row == 3{
-                                loderfu()
-                            }
+                        
+                       // futureCell.mallbutton.setTitle(importer.mallsinn![indexPath.row], for: .normal)
                         }
                         
                     }
-                    if indexPath.row == 0{
-                        importer.dmname = json.dmname
-                        importer.dmdis = json.dmdis
-                        importer.dmfloors = json.dmfloors
-                        importer.lcname = json.lcname
-                        importer.lcdis = json.lcdis
-                        importer.lcfloors = json.lcfloors
-                        importer.lcfloornames = json.lcfloornames // malls floornames
-                        importer.lcshopnameslg = json.lcshopslg // shops in lower ground
-                        importer.lcshopnamesg = json.lcshopg // shops in ground
-                        importer.lcshopnames1 = json.lcshop1 // shops in 1st floor
-                        importer.lcshopnames2 = json.lcshop2 // 2nd
-                        importer.lcshopnames3 = json.lcshop3 // 3rd
-                        importer.lcshopnames4 = json.lcshop4 // 4th
-                        importer.phoneNumberslg = json.lcshopphonelg // getting all the phone numbers in lg floor into this array
-                        
-                        importer.ggname = json.ggname
-                        importer.ggdis = json.ggdis
-                        importer.ggfloors = json.ggfloors
-                        importer.gpname = json.gpname
-                        importer.gpdis = json.gpdis
-                        importer.gpfloors = json.gpfloors
-                        
-                    }
-                    
-                    
-                    
-                    importer.dataFloorLc = self.imageArrForLc // setting the value of our global [var] to our newly ready image array
-                    for i in 0...2{ // getting one by one data from the array we make below
-                        if let imageData = try? Data(contentsOf: lcfloorurl[i]){
-                            
-                            self.imageArrForLc?.append(imageData) // appending the data to our image array we made in starting of the file
-                            
-                        }
-                    }
-                    
-                })
-                task.resume()
-             
-                
-                
                 
             }else if ViewController.myGlobalVar.region == "Delhi"{
-                //networking to get api data
-                let task = URLSession.shared.dataTask(with: URL(string: urlford)!, completionHandler: { [self]data, response, error in
-                    guard let data = data, error == nil else{
-                        print("somthin wrong")
-                        return
-                    }
-                    var result: grNoida?
-                    do {
-                        result = try JSONDecoder().decode(grNoida.self, from: data)
-                    } catch  {
-                        print(error)
-                    }
-                    
-                    guard let json = result else{
-                        
-                        return
-                    }
-                    
-                    /// data init
-                    
-                    /// intializing our gloabl variables to the retrivied data from the api
-                    
-                    
-                    //name of malls in gr noida
-                   // importer.mallsingr = [json.gvname,json.mmname,json.apname,json.oaname]
-                    //name of malls in noida
-                   // importer.mallsinn = [json.dmname,json.lcname,json.ggname,json.gpname]
-                    //name of malls in delhi
-                    importer.mallsind = [json.vsname,json.tcname,json.ccname,json.cmname,json.dsname,json.amname,json.pmname,json.scname]
-                    //images of malls in gr noida
-                   // importer.mallsingrimg = [json.gvmallimage,json.mmmallimage,json.apmallimage,json.oamallimage]
-                    //images of malls in noida
-                   // importer.mallsinnimg = [json.dmmallimage,json.lcmallimage,json.ggmallimage,json.gpmallimage]
-                    //images of malls in delhi
-                    importer.mallsindimg = [json.vsmallimage,json.tcmallimage,json.ccmallimage,json.cmmallimage,json.dsmallimage,json.ammallimage,json.pmmallimage,json.scmallimage]
-                    
-                    // floor images for logix city noida in url from retrived from api as string
-                   // let lcfloorurl = [URL(string: json.lcfloorimages[0])!,URL(string: json.lcfloorimages[1])!,URL(string: json.lcfloorimages[2])!] // getting the hold of only one
-                    
-                    for i in 0...7{
-                    let imgurl = URL(string: importer.mallsindimg![i])!
-                    
-                    if let data = try? Data(contentsOf: imgurl ){
-                        
-                        imageArr?.append(data)
-                        importer.dataimg = imageArr
-                    }
-                        DispatchQueue.main.async {
-                            if indexPath.row == 0{
-                                navBar.title = "Malls in Delhi"
-                            }
-                            if let futureCell = mallTableView.cellForRow(at: indexPath) as? MallCells {
-                            futureCell.mallbutton.setTitle(importer.mallsind![indexPath.row], for: .normal)
-                            futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
-                            }
-                            loderfu()
-                        }
+                if indexPath.row == 0 {
+                for i in 0...7{
+                let imgurl = URL(string: importer.mallsindimg![i])!
+                if let data = try? Data(contentsOf: imgurl ){
+
+                    imageArr?.append(data)
+                   
+                }
+                }
+                    importer.dataimg = imageArr
+                }
+              
+                   
+               
+                    DispatchQueue.main.async { [self] in
                         if indexPath.row == 0{
-                            importer.vsname = json.vsname
-                            importer.vsdis = json.vsdis
-                            importer.vsfloors = json.vsfloors
-                            
-                            importer.tcname = json.tcname
-                            importer.tcdis = json.tcdis
-                            importer.tcfloors = json.tcfloors
-                            
-                            importer.ccname = json.ccname
-                            importer.ccdis = json.ccdis
-                            importer.ccfloors = json.ccfloors
-                            
-                            importer.cmname = json.cmname
-                            importer.cmdis = json.cmdis
-                            importer.cmfloors = json.cmfloors
-                            
-                            importer.dsname = json.dsname
-                            importer.dsdis = json.dsdis
-                            importer.dsfloors = json.dsfloors
-                            
-                            importer.amname = json.amname
-                            importer.amdis = json.amdis
-                            importer.amfloors = json.amfloors
-                            
-                            importer.pmname = json.pmname
-                            importer.pmdis = json.pmdis
-                            importer.pmfloors = json.pmfloors
-                            
-                            importer.scname = json.scname
-                            importer.scdis = json.scdis
-                            importer.scfloors = json.scfloors
-                            
-                            
+                            navBar.title = "Malls in Delhi"
                         }
+                        if let futureCell = tableView.cellForRow(at: indexPath) as? MallCells {
+                        futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
+                        
+                            futureCell.mallbutton.setTitle(importer.mallsind![indexPath.row], for: .normal)
+                        
+                      //  futureCell.mallbutton.setTitle(importer.mallsind![indexPath.row], for: .normal)
+                        }
+                       
                     }
-                    
-                    
-                })
-                task.resume()
-          
-                
                 
             }
             
@@ -520,12 +307,6 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
         
     }
     // stoping loding activity function
-    func loderfu(){
-        self.loder.stopAnimating()
-        self.loder.isHidden = true
-        self.loder.isUserInteractionEnabled = false 
-        self.loderView.isExclusiveTouch = false 
-        self.loderView.isUserInteractionEnabled = false
-    }
+ 
 }
 

@@ -10,7 +10,8 @@ import Foundation
 
 
 // our api structuring 
-struct grNoida : Codable{
+struct GrNoida : Codable{
+    
     
     let gvname : String
     let gvdis : String
@@ -51,6 +52,10 @@ struct grNoida : Codable{
     let oashopnumbers:Int
     let oafloorimages:[String]
     let oafloors:Int
+    
+}
+
+struct Noida : Codable {
     
     let dmname : String
     let dmdis : String
@@ -103,6 +108,11 @@ struct grNoida : Codable{
     let gpfloorimages:[String]
     let gpfloors:Int
     
+
+}
+
+
+struct Delhi : Codable{
     let vsname : String
     let vsdis : String
     let vsshops:[String]

@@ -55,16 +55,39 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Tz-ewN">
+                                <rect key="frame" x="0.0" y="22" width="414" height="692"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="anG-Hb-RpW">
+                                        <rect key="frame" x="168" y="544" width="79" height="73"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="79" id="4iQ-ms-DBE"/>
+                                            <constraint firstAttribute="height" constant="73" id="uk8-WT-Lzx"/>
+                                        </constraints>
+                                        <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="anG-Hb-RpW" firstAttribute="centerX" secondItem="hFj-Tz-ewN" secondAttribute="centerX" id="CQ5-LL-CRW"/>
+                                    <constraint firstItem="anG-Hb-RpW" firstAttribute="centerY" secondItem="hFj-Tz-ewN" secondAttribute="centerY" constant="234.5" id="h8q-Xi-mLM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.92549019610000005" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="centerY" secondItem="cWr-3p-t71" secondAttribute="centerY" id="7aI-vv-E3F"/>
+                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="FxN-9A-Sv9"/>
+                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JII-e8-D4f"/>
                             <constraint firstItem="cWr-3p-t71" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kAr-T1-DQ8"/>
                             <constraint firstItem="cWr-3p-t71" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lUV-D2-1Vc"/>
+                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="centerX" secondItem="cWr-3p-t71" secondAttribute="centerX" id="sOV-u4-wnw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loader" destination="anG-Hb-RpW" id="052-TB-bCS"/>
+                        <outlet property="loaderView" destination="hFj-Tz-ewN" id="hnV-EA-UGE"/>
                         <outlet property="locPick" destination="xCY-JN-lMA" id="Kge-Uo-kjB"/>
                         <outlet property="nextb" destination="DtX-2x-qCt" id="mdw-Ng-XvY"/>
                         <segue destination="gCF-z0-ZWA" kind="presentation" identifier="Malls" modalPresentationStyle="fullScreen" id="uzH-1h-2s6"/>
@@ -122,36 +145,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFj-Tz-ewN">
-                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="anG-Hb-RpW">
-                                        <rect key="frame" x="167.66666666666666" y="310" width="79" height="73"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="79" id="4iQ-ms-DBE"/>
-                                            <constraint firstAttribute="height" constant="73" id="uk8-WT-Lzx"/>
-                                        </constraints>
-                                        <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="anG-Hb-RpW" firstAttribute="centerX" secondItem="hFj-Tz-ewN" secondAttribute="centerX" id="CQ5-LL-CRW"/>
-                                    <constraint firstItem="anG-Hb-RpW" firstAttribute="centerY" secondItem="hFj-Tz-ewN" secondAttribute="centerY" constant="0.5" id="h8q-Xi-mLM"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kCr-iJ-W67"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.92549019610000005" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="PJm-B1-uoA" firstAttribute="leading" secondItem="kCr-iJ-W67" secondAttribute="leading" id="0zN-Ff-Tat"/>
-                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="centerX" secondItem="sp0-IG-eoG" secondAttribute="centerX" id="FZ3-of-kpD"/>
-                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="centerY" secondItem="sp0-IG-eoG" secondAttribute="centerY" constant="22" id="GHu-pa-Yjr"/>
                             <constraint firstItem="PJm-B1-uoA" firstAttribute="trailing" secondItem="kCr-iJ-W67" secondAttribute="trailing" id="MNb-RW-E6H"/>
-                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="top" secondItem="kCr-iJ-W67" secondAttribute="top" id="Oht-yk-42j"/>
                             <constraint firstItem="PJm-B1-uoA" firstAttribute="bottom" secondItem="kCr-iJ-W67" secondAttribute="bottom" id="U5W-4h-CeD"/>
                             <constraint firstItem="PJm-B1-uoA" firstAttribute="top" secondItem="kCr-iJ-W67" secondAttribute="top" id="av9-Os-Clm"/>
-                            <constraint firstItem="hFj-Tz-ewN" firstAttribute="leading" secondItem="kCr-iJ-W67" secondAttribute="leading" id="xo4-tj-SCR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="evJ-6T-dnj">
@@ -163,8 +165,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="loder" destination="anG-Hb-RpW" id="ZKt-tl-wEc"/>
-                        <outlet property="loderView" destination="hFj-Tz-ewN" id="IOc-2e-MZc"/>
                         <outlet property="mallTableView" destination="PJm-B1-uoA" id="IPO-SW-gIz"/>
                         <outlet property="navBar" destination="evJ-6T-dnj" id="Vxx-0o-aWc"/>
                         <segue destination="XtG-Sr-h6o" kind="presentation" identifier="detail" modalPresentationStyle="fullScreen" id="xt1-ZP-HJf"/>
@@ -584,8 +584,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qcj-9H-5I3"/>
-        <segue reference="dVq-mq-5gq"/>
+        <segue reference="uzH-1h-2s6"/>
+        <segue reference="xt1-ZP-HJf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.forward.circle.fill" catalog="system" width="128" height="121"/>
