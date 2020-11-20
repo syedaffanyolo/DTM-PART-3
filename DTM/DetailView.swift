@@ -256,7 +256,7 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
     
     /// Animates a view to scale in and display
     func animateScaleIn(desiredView: UIView) {
-        var i = Malls.importer.zoomsender // checking which floor wwas clicked by the help of thsi global sender
+        let i = Malls.importer.zoomsender // checking which floor wwas clicked by the help of thsi global sender
         zoomImage.image = UIImage(data: Malls.importer.dataFloorLc![i!]) // tapping inot the image array and setting the image of the zoomed in view image
         
         let backgroundView = self.view!

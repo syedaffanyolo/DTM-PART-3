@@ -120,7 +120,9 @@
                                                     <rect key="frame" x="13" y="26" width="388" height="237"/>
                                                     <color key="backgroundColor" red="0.84011453144329107" green="0.83445619728466203" blue="0.79069602959368568" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="388" id="2G8-cr-Frp"/>
                                                         <constraint firstAttribute="height" constant="237" id="Nor-k3-CBL"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="237" id="fjF-0U-U9C"/>
                                                         <constraint firstAttribute="width" constant="388" id="gLT-hv-nVz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="28"/>
@@ -195,7 +197,7 @@
                                             <constraint firstAttribute="width" constant="414" id="rCK-xK-Y59"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rgdfghfsghfghshdsffdsgsdfgdsfgdsfgdfsgsdfgdfsgfsdgdfgdfsgdfsgdfsgdfsgdfgdsfgsdf" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0np-lo-2bT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rgdfghfsghfghshdsffdsgsdfgdsfgdsfgdfsgsdfgdfsgfsdgdfgdfsgdfsgdfsgdfsg" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0np-lo-2bT">
                                         <rect key="frame" x="20" y="100" width="306" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="306" id="UTp-A6-W85"/>

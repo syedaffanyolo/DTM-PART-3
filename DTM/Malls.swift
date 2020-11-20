@@ -14,12 +14,14 @@ import UIKit
 
 
 class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
+   
+    
     
     
     
     //all variables here
-    var imageArr : [Data]? = []
-  
+   
+    var dataCount : IndexPath? = nil
     var titleArraygn : [String]? = []
     var titleArrayn : [String]? = []
     var titleArrayd : [String]? = []
@@ -46,13 +48,21 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
         // setting delgate and datasource for table view
         mallTableView.delegate = self
         mallTableView.dataSource = self
+       
         // making seprator for cells clear colour
         self.mallTableView.separatorColor = .clear
         // starting loading
        // loder.startAnimating()
         // blank title for nav
         navBar.title = ""
-    }
+        
+            
+      //  self.mallTableView.reloadData()
+        
+        
+        }
+        
+    
     
     
     
@@ -110,31 +120,24 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
             
             // checking selected region
             if ViewController.myGlobalVar.region == "Greater Noida"{
-                if indexPath.row == 0 {
-                for i in 0...3{
-                let imgurl = URL(string: importer.mallsingrimg![i])!
-                if let data = try? Data(contentsOf: imgurl ){
-
-                    imageArr?.append(data)
-                   
-                }
-                }
-                    importer.dataimg = imageArr
-                }
+               
+                
+                
               
                    
                
-                    DispatchQueue.main.async { [self] in
-                        if indexPath.row == 0{
-                            navBar.title = "Malls in Greater Noida"
-                        }
+                DispatchQueue.main.async { [self] in
+                       
+                      //  mallTableView.reloadData()
                         if let futureCell = tableView.cellForRow(at: indexPath) as? MallCells {
-                        futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
+                            navBar.title = "Greater Noida"
+                            futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
                         
                             futureCell.mallbutton.setTitle(importer.mallsingr![indexPath.row], for: .normal)
-                        
+                           
                        // futureCell.mallbutton.setTitle(importer.mallsinn![indexPath.row], for: .normal)
                         }
+                      
                        
                     }
                     
@@ -144,58 +147,33 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
  
             }else if ViewController.myGlobalVar.region == "Noida"{
               
-                if indexPath.row == 0 {
-                for i in 0...3{
-                let imgurl = URL(string: importer.mallsinnimg![i])!
-                if let data = try? Data(contentsOf: imgurl ){
-
-                    imageArr?.append(data)
-                   
-                }
-                }
-                    importer.dataimg = imageArr
-                }
-              
+             
                    
                
                     DispatchQueue.main.async { [self] in
-                        if indexPath.row == 0{
-                            navBar.title = "Malls in Noida"
-                        }
+                        navBar.title = "Noida"
                         if let futureCell = tableView.cellForRow(at: indexPath) as? MallCells {
-                        futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
+                            futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
                         
                             futureCell.mallbutton.setTitle(importer.mallsinn![indexPath.row], for: .normal)
-                        
+                            
                        // futureCell.mallbutton.setTitle(importer.mallsinn![indexPath.row], for: .normal)
                         }
                         
                     }
                 
             }else if ViewController.myGlobalVar.region == "Delhi"{
-                if indexPath.row == 0 {
-                for i in 0...7{
-                let imgurl = URL(string: importer.mallsindimg![i])!
-                if let data = try? Data(contentsOf: imgurl ){
-
-                    imageArr?.append(data)
-                   
-                }
-                }
-                    importer.dataimg = imageArr
-                }
+              
               
                    
                
                     DispatchQueue.main.async { [self] in
-                        if indexPath.row == 0{
-                            navBar.title = "Malls in Delhi"
-                        }
+                        navBar.title = "Delhi"
                         if let futureCell = tableView.cellForRow(at: indexPath) as? MallCells {
                         futureCell.mallbutton.setBackgroundImage(UIImage(data: importer.dataimg![indexPath.row]), for: .normal)
                         
                             futureCell.mallbutton.setTitle(importer.mallsind![indexPath.row], for: .normal)
-                        
+                            
                       //  futureCell.mallbutton.setTitle(importer.mallsind![indexPath.row], for: .normal)
                         }
                         
@@ -203,7 +181,9 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
                 
             }
             
-      
+        
+            
+       
         
         return cell
     }
@@ -307,6 +287,8 @@ class Malls: UIViewController, UITableViewDelegate,  UITableViewDataSource {
         
     }
     // stoping loding activity function
- 
+    
 }
+
+    
 

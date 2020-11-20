@@ -93,7 +93,7 @@ class shopView: UIViewController, UITableViewDelegate,  UITableViewDataSource {
                     
                     for calltag in 0...3{
                         if Malls.importer.callsender == calltag{
-                            var phone = Malls.importer.phoneNumberslg![calltag]
+                            let phone = Malls.importer.phoneNumberslg![calltag]
                             guard let number = URL(string: "tel://" + "\(phone)") else { return }
                             UIApplication.shared.open(number)
                         }

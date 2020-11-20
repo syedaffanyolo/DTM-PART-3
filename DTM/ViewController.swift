@@ -4,7 +4,40 @@
 //
 //  Created by Syedaffan on 8/24/20.
 //
-
+//if ViewController.myGlobalVar.region == "Greater Noida"{
+//    self.navBar.title = "Greater Noida"
+//    for i in 0...3{
+//    let imgurl = URL(string: importer.mallsingrimg![i])!
+//    if let data = try? Data(contentsOf: imgurl ){
+//
+//        imageArr?.append(data)
+//
+//    }
+//    }
+//    importer.dataimg = imageArr
+//    }else if ViewController.myGlobalVar.region == "Noida"{
+//        self.navBar.title = "Noida"
+//        for i in 0...3{
+//        let imgurl = URL(string: importer.mallsinnimg![i])!
+//        if let data = try? Data(contentsOf: imgurl ){
+//
+//            imageArr?.append(data)
+//
+//        }
+//        }
+//        importer.dataimg = imageArr
+//    }else if ViewController.myGlobalVar.region == "Delhi"{
+//        self.navBar.title = "Delhi"
+//        for i in 0...7{
+//        let imgurl = URL(string: importer.mallsindimg![i])!
+//        if let data = try? Data(contentsOf: imgurl ){
+//
+//            imageArr?.append(data)
+//
+//        }
+//        }
+//        importer.dataimg = imageArr
+//    }
 import UIKit
 
 // assiging the delegate for our uipicker view
@@ -12,7 +45,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let urlforgr = "https://dtmappapi.herokuapp.com/grapi"
     let urlforn = "https://dtmappapi.herokuapp.com/napi"
     let urlford = "https://dtmappapi.herokuapp.com/dapi"
-  
+    var imageArr : [Data]? = []
     var imageArrForLc : [Data]? = []
     
     // all outlets
@@ -41,7 +74,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         locationPicker = ["Greater Noida","Noida","Delhi"]
         
         
-        
+    
         
         
     }
@@ -98,8 +131,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             Malls.importer.oaname = json.oaname
             Malls.importer.oadis = json.oadis
             Malls.importer.omfloors = json.oafloors
+            
+            //self.navBar.title = "Greater Noida"
+               for i in 0...3{
+                let imgurl = URL(string: Malls.importer.mallsingrimg![i])!
+                if let data = try? Data(contentsOf: imgurl ){
+           
+                    imageArr?.append(data)
+           
+               }
+               }
+            Malls.importer.dataimg = imageArr
+                //print(imageArr)
             DispatchQueue.main.async {
                 loderfu()
+                //print(Malls.importer.dataimg)
                 performSegue(withIdentifier: "Malls", sender: self)
                 
             }
@@ -164,7 +210,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 Malls.importer.gpdis = json.gpdis
                 Malls.importer.gpfloors = json.gpfloors
                 //print(json)
-                
+                for i in 0...3{
+                 let imgurl = URL(string: Malls.importer.mallsinnimg![i])!
+                 if let data = try? Data(contentsOf: imgurl ){
+            
+                     imageArr?.append(data)
+            
+                }
+                }
+             Malls.importer.dataimg = imageArr
                 DispatchQueue.main.async {
                    
                     performSegue(withIdentifier: "Malls", sender: self)
@@ -226,12 +280,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 Malls.importer.scname = json.scname
                 Malls.importer.scdis = json.scdis
                 Malls.importer.scfloors = json.scfloors
+                for i in 0...7{
+                 let imgurl = URL(string: Malls.importer.mallsindimg![i])!
+                 if let data = try? Data(contentsOf: imgurl ){
+            
+                     imageArr?.append(data)
+            
+                }
+                }
+             Malls.importer.dataimg = imageArr
                 DispatchQueue.main.async {
                     loderfu()
                     performSegue(withIdentifier: "Malls", sender: self)
                     
                 }
-               
+                
             })
             task.resume()
         }
@@ -289,6 +352,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.loader.isUserInteractionEnabled = false
         self.loaderView.isExclusiveTouch = false
         self.loaderView.isUserInteractionEnabled = false
+        
     }
     func lodervu(){
         self.loader.startAnimating()
