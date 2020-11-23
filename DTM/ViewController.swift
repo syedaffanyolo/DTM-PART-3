@@ -16,16 +16,7 @@
 //    }
 //    importer.dataimg = imageArr
 //    }else if ViewController.myGlobalVar.region == "Noida"{
-//        self.navBar.title = "Noida"
-//        for i in 0...3{
-//        let imgurl = URL(string: importer.mallsinnimg![i])!
-//        if let data = try? Data(contentsOf: imgurl ){
 //
-//            imageArr?.append(data)
-//
-//        }
-//        }
-//        importer.dataimg = imageArr
 //    }else if ViewController.myGlobalVar.region == "Delhi"{
 //        self.navBar.title = "Delhi"
 //        for i in 0...7{
@@ -46,7 +37,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let urlforn = "https://dtmappapi.herokuapp.com/napi"
     let urlford = "https://dtmappapi.herokuapp.com/dapi"
     var imageArr : [Data]? = []
-    var imageArrForLc : [Data]? = []
+    
     
     // all outlets
     @IBOutlet weak var locPick: UIPickerView!
@@ -117,20 +108,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             Malls.importer.mallsingrimg =  [json.gvmallimage,json.mmmallimage,json.apmallimage,json.oamallimage]
             //print(json)
             Malls.importer.gvname = json.gvname
-            Malls.importer.gvdis = json.gvdis
-            Malls.importer.gvfloors = json.gvfloors
+          //  Malls.importer.gvdis = json.gvdis
+          //  Malls.importer.gvfloors = json.gvfloors
                                       
             Malls.importer.msname = json.mmname
-            Malls.importer.msdis = json.mmdis
-            Malls.importer.msfloors = json.mmfloors
+          //  Malls.importer.msdis = json.mmdis
+          //  Malls.importer.msfloors = json.mmfloors
                                       
             Malls.importer.anname = json.apname
-            Malls.importer.andis = json.apdis
-            Malls.importer.anfloors = json.apfloors
+          //  Malls.importer.andis = json.apdis
+           // Malls.importer.anfloors = json.apfloors
                                       
             Malls.importer.oaname = json.oaname
-            Malls.importer.oadis = json.oadis
-            Malls.importer.omfloors = json.oafloors
+          //  Malls.importer.oadis = json.oadis
+           // Malls.importer.omfloors = json.oafloors
             
             //self.navBar.title = "Greater Noida"
                for i in 0...3{
@@ -179,36 +170,29 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
                 
                 Malls.importer.mallsinnimg =  [json.dmmallimage,json.lcmallimage,json.ggmallimage,json.gpmallimage]
-                let lcfloorurl = [URL(string: json.lcfloorimages[0])!,URL(string: json.lcfloorimages[1])!,URL(string: json.lcfloorimages[2])!]
-                for i in 0...2{ // getting one by one data from the array we make below
-                                    if let imageData = try? Data(contentsOf: lcfloorurl[i]){
-                                        
-                                        self.imageArrForLc?.append(imageData) // appending the data to our image array we made in starting of the file
-                                        
-                                    }
-                }
-                Malls.importer.dataFloorLc = imageArrForLc
+               // let lcfloorurl = [URL(string: json.lcfloorimages[0])!,URL(string: json.lcfloorimages[1])!,URL(string: json.lcfloorimages[2])!]
+//                for i in 0...2{ // getting one by one data from the array we make below
+//                                    if let imageData = try? Data(contentsOf: lcfloorurl[i]){
+//                                        
+//                                        self.imageArrForLc?.append(imageData) // appending the data to our image array we made in starting of the file
+//                                        
+//                                    }
+//                }
+               // Malls.importer.dataFloorLc = imageArrForLc
                 Malls.importer.dmname = json.dmname
-                Malls.importer.dmdis = json.dmdis
-                Malls.importer.dmfloors = json.dmfloors
+               // Malls.importer.dmdis = json.dmdis
+               // Malls.importer.dmfloors = json.dmfloors
                 Malls.importer.lcname = json.lcname
-                Malls.importer.lcdis = json.lcdis
-                Malls.importer.lcfloors = json.lcfloors
-                Malls.importer.lcfloornames = json.lcfloornames // malls floornames
-                Malls.importer.lcshopnameslg = json.lcshopslg // shops in lower ground
-                Malls.importer.lcshopnamesg = json.lcshopg // shops in ground
-                Malls.importer.lcshopnames1 = json.lcshop1 // shops in 1st floor
-                Malls.importer.lcshopnames2 = json.lcshop2 // 2nd
-                Malls.importer.lcshopnames3 = json.lcshop3 // 3rd
-                Malls.importer.lcshopnames4 = json.lcshop4 // 4th
-                Malls.importer.phoneNumberslg = json.lcshopphonelg // getting all the phone numbers in lg floor into this array
+               // Malls.importer.lcdis = json.lcdis
+               // Malls.importer.lcfloors = json.lcfloors
+             
                                    
                 Malls.importer.ggname = json.ggname
-                Malls.importer.ggdis = json.ggdis
-                Malls.importer.ggfloors = json.ggfloors
+               // Malls.importer.ggdis = json.ggdis
+              //  Malls.importer.ggfloors = json.ggfloors
                 Malls.importer.gpname = json.gpname
-                Malls.importer.gpdis = json.gpdis
-                Malls.importer.gpfloors = json.gpfloors
+              //  Malls.importer.gpdis = json.gpdis
+              //  Malls.importer.gpfloors = json.gpfloors
                 //print(json)
                 for i in 0...3{
                  let imgurl = URL(string: Malls.importer.mallsinnimg![i])!
@@ -250,36 +234,34 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 Malls.importer.mallsindimg =  [json.vsmallimage,json.tcmallimage,json.ccmallimage,json.cmmallimage,json.ammallimage,json.dsmallimage,json.scmallimage,json.pmmallimage]
                 //print(json)
                 Malls.importer.vsname = json.vsname
-                Malls.importer.vsdis = json.vsdis
-                Malls.importer.vsfloors = json.vsfloors
-                                        
+            
                 Malls.importer.tcname = json.tcname
-                Malls.importer.tcdis = json.tcdis
-                Malls.importer.tcfloors = json.tcfloors
+              //  Malls.importer.tcdis = json.tcdis
+              //  Malls.importer.tcfloors = json.tcfloors
                                         
                 Malls.importer.ccname = json.ccname
-                Malls.importer.ccdis = json.ccdis
-                Malls.importer.ccfloors = json.ccfloors
+              //  Malls.importer.ccdis = json.ccdis
+              //  Malls.importer.ccfloors = json.ccfloors
                                         
                 Malls.importer.cmname = json.cmname
-                Malls.importer.cmdis = json.cmdis
-                Malls.importer.cmfloors = json.cmfloors
-                                        
+              //  Malls.importer.cmdis = json.cmdis
+               // Malls.importer.cmfloors = json.cmfloors
+              
                 Malls.importer.dsname = json.dsname
-                Malls.importer.dsdis = json.dsdis
-                Malls.importer.dsfloors = json.dsfloors
+                //Malls.importer.dsdis = json.dsdis
+               // Malls.importer.dsfloors = json.dsfloors
                                         
                 Malls.importer.amname = json.amname
-                Malls.importer.amdis = json.amdis
-                Malls.importer.amfloors = json.amfloors
+               // Malls.importer.amdis = json.amdis
+               // Malls.importer.amfloors = json.amfloors
                                         
                 Malls.importer.pmname = json.pmname
-                Malls.importer.pmdis = json.pmdis
-                Malls.importer.pmfloors = json.pmfloors
+               // Malls.importer.pmdis = json.pmdis
+               // Malls.importer.pmfloors = json.pmfloors
                                         
                 Malls.importer.scname = json.scname
-                Malls.importer.scdis = json.scdis
-                Malls.importer.scfloors = json.scfloors
+              //  Malls.importer.scdis = json.scdis
+              //  Malls.importer.scfloors = json.scfloors
                 for i in 0...7{
                  let imgurl = URL(string: Malls.importer.mallsindimg![i])!
                  if let data = try? Data(contentsOf: imgurl ){

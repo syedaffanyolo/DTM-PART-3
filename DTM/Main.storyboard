@@ -197,7 +197,7 @@
                                             <constraint firstAttribute="width" constant="414" id="rCK-xK-Y59"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rgdfghfsghfghshdsffdsgsdfgdsfgdsfgdfsgsdfgdfsgfsdgdfgdfsgdfsgdfsgdfsg" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0np-lo-2bT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0np-lo-2bT">
                                         <rect key="frame" x="20" y="100" width="306" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="306" id="UTp-A6-W85"/>
@@ -209,7 +209,7 @@
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="shadowOffset" width="2" height="1"/>
                                     </label>
-                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-qT-exz">
+                                    <button userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-qT-exz">
                                         <rect key="frame" x="334" y="100" width="61" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="4JB-R4-6NC"/>
@@ -265,7 +265,7 @@
                                                                 <action selector="floorButtonClicked:" destination="I7S-vp-E6W" eventType="touchUpInside" id="vSt-Aw-o1g"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BwM-S9-4kP">
+                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BwM-S9-4kP">
                                                             <rect key="frame" x="344" y="61" width="50" height="45.333333333333343"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="8gr-t7-6ad"/>
@@ -281,8 +281,8 @@
                                                                 <segue destination="VP7-zb-9ei" kind="presentation" modalPresentationStyle="fullScreen" id="mBG-kh-DXX"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbH-2H-qg1">
-                                                            <rect key="frame" x="19.999999999999996" y="30.666666666666664" width="47.666666666666657" height="106.66666666666669"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbH-2H-qg1">
+                                                            <rect key="frame" x="20" y="30.666666666666664" width="0.0" height="106.66666666666669"/>
                                                             <color key="tintColor" red="0.41568627450000001" green="0.17254901959999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="78"/>
                                                             <color key="textColor" red="0.41568627450000001" green="0.17254901959999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -423,7 +423,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIn-ZJ-1vV">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIn-ZJ-1vV">
                                                             <rect key="frame" x="20" y="32" width="300" height="47"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="47" id="1L1-zM-uII"/>
@@ -445,8 +445,8 @@
                                                                 <action selector="callbutton:" destination="tPj-y2-Tk8" eventType="touchUpInside" id="rYi-5W-vYx"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He5-jJ-c1i">
-                                                            <rect key="frame" x="20" y="84.666666666666671" width="311.33333333333331" height="16.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He5-jJ-c1i">
+                                                            <rect key="frame" x="20" y="101" width="0.0" height="0.0"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="He5-jJ-c1i" secondAttribute="height" multiplier="305:16" id="4XU-CM-J2d"/>
                                                             </constraints>
@@ -588,8 +588,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="mBG-kh-DXX"/>
         <segue reference="qcj-9H-5I3"/>
-        <segue reference="xt1-ZP-HJf"/>
+        <segue reference="dVq-mq-5gq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.forward.circle.fill" catalog="system" width="128" height="121"/>

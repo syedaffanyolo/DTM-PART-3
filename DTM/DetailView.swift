@@ -12,9 +12,12 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
     
     
     // all outlets
-    
-    
-    
+    //api link
+    let url = "https://dtmappapi.herokuapp.com/detailgr"
+    let url2 = "https://dtmappapi.herokuapp.com/detailn"
+    let url3 = "https://dtmappapi.herokuapp.com/detaild"
+    var counter  = 0
+    var imageArrForLc : [Data]? = []
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var detailTable: UITableView!
     @IBOutlet weak var navigation: UIButton!
@@ -23,7 +26,8 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
     @IBOutlet weak var zoomImage: UIImageView!
     @IBOutlet var zoomView: UIView!
     @IBOutlet var blurView: UIVisualEffectView!
-   
+
+    
     
     
     
@@ -40,6 +44,10 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
         blurView.bounds = self.view.bounds
         zoomView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width*0.9, height: self.view.bounds.height*0.8)
         zoomView.layer.cornerRadius = 5
+        counter = 0
+       // navigation.isEnabled = false
+      
+    
     }
     // navigation/map action
     @IBAction func navigationButton(_ sender: Any) {
@@ -74,133 +82,377 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = detailTable.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! floorCell // custom cell
         
-        //setting nav bar title to empty
         navBar.title = ""
-        //checking selected region
-        // like here we check foro grnoida and we know we got 4 malls , since we are having reusable buttons we cant assign them all in one so we have to check what region we are in and then populating the data of the mall we selcted from that region
+        let cell = detailTable.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! floorCell // custom cell
+//
+//            cell.floorButton.isEnabled = false
+//            cell.floorButton.isUserInteractionEnabled = false
         
-        if ViewController.myGlobalVar.region == "Greater Noida"{
-            // the switch statement here is an integer it is the sender.tag global variable
-            switch Malls.importer.sender {
-            //if the sender.tag was 0..3 do this
-            case 0:// on zero tag we know its grand venice hence we do the following stuff
-                //setting nav title
-                navBar.title = Malls.importer.gvname //setting navbar title to the mall name
-                dislabel.text = Malls.importer.gvdis //setting address to mall address
-                mallimage.image = UIImage(data: Malls.importer.dataimg![0])//gr venice data holidng image
-                shopnumbercell = Malls.importer.gvfloors // setting floors for this mall in a variable so that it could be used in cell amount proptional to floors
-            case 1:
-                navBar.title = Malls.importer.msname
-                dislabel.text = Malls.importer.msdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![1])
-                shopnumbercell = Malls.importer.msfloors
-            case 2:
-                navBar.title = Malls.importer.anname
-                dislabel.text = Malls.importer.andis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![2])
-                shopnumbercell = Malls.importer.anfloors
-            case 3:
-                navBar.title = Malls.importer.oaname
-                dislabel.text = Malls.importer.oadis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![3])
-                shopnumbercell = Malls.importer.omfloors
-                
-            default:
-                return UITableViewCell()
-            }
+        
+        
+            if ViewController.myGlobalVar.region == "Greater Noida"{
+               
+                let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { [self]data, response, error in
+                    guard let data = data, error == nil else{
+                        print("somthin wrong")
+                        return
+                    }
+                    var result: detailgr?
+                    do {
+                        result = try JSONDecoder().decode(detailgr.self, from: data)
+                    } catch  {
+                        print(error)
+                    }
+                    
+                    guard let json = result else{
+                        
+                        return
+                    }
+                      Malls.importer.gvdis = json.gvdis
+                      Malls.importer.gvfloors = json.gvfloors
+                      Malls.importer.msdis = json.mmdis
+                      Malls.importer.msfloors = json.mmfloors
+                      Malls.importer.andis = json.apdis
+                      Malls.importer.anfloors = json.apfloors
+                      Malls.importer.oadis = json.oadis
+                      Malls.importer.omfloors = json.oafloors
+                    
+                  
+                    
+                    switch Malls.importer.sender {
+                    //if the sender.tag was 0..3 do this
+                    
+                    case 0:// on zero tag we know its grand venice hence we do the following stuff
+                        //setting nav title
+                        DispatchQueue.main.async {
+                            navBar.title = Malls.importer.gvname //setting navbar title to the mall name
+                            dislabel.text = Malls.importer.gvdis //setting address to mall address
+                            mallimage.image = UIImage(data: Malls.importer.dataimg![0])//gr venice data holidng image
+                            shopnumbercell = Malls.importer.gvfloors // setting floors for this mall in a variable so that it could be used in cell amount proptional to floors
+                            cell.shopButton.isUserInteractionEnabled = true
+                            cell.shopButton.isEnabled = true
+                            navigation.isEnabled = true
+                            navigation.isUserInteractionEnabled = true
+                        }
+                    case 1:
+                        DispatchQueue.main.async {
+                        navBar.title = Malls.importer.msname
+                        dislabel.text = Malls.importer.msdis
+                        mallimage.image = UIImage(data: Malls.importer.dataimg![1])
+                        shopnumbercell = Malls.importer.msfloors
+                            cell.shopButton.isUserInteractionEnabled = true
+                            cell.shopButton.isEnabled = true
+                            navigation.isEnabled = true
+                            navigation.isUserInteractionEnabled = true
+                        }
+                    case 2:
+                            DispatchQueue.main.async {
+                        navBar.title = Malls.importer.anname
+                        dislabel.text = Malls.importer.andis
+                        mallimage.image = UIImage(data: Malls.importer.dataimg![2])
+                        shopnumbercell = Malls.importer.anfloors
+                                cell.shopButton.isUserInteractionEnabled = true
+                                cell.shopButton.isEnabled = true
+                                navigation.isEnabled = true
+                                navigation.isUserInteractionEnabled = true
+                           
+                            }
+                    case 3:
+                                DispatchQueue.main.async {
+                        navBar.title = Malls.importer.oaname
+                        dislabel.text = Malls.importer.oadis
+                        mallimage.image = UIImage(data: Malls.importer.dataimg![3])
+                        shopnumbercell = Malls.importer.omfloors
+                                    cell.shopButton.isUserInteractionEnabled = true
+                                    cell.shopButton.isEnabled = true
+                                    navigation.isEnabled = true
+                                    navigation.isUserInteractionEnabled = true
+                                }
+                    default:
+                        return
+                    }
+                })
+                task.resume()
+            } // networking
+       
+       
             
-        }else if ViewController.myGlobalVar.region == "Noida"{
+         //   let cell = detailTable.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! floorCell // custom cell
             
-            switch Malls.importer.sender {
-            case 0:
-                navBar.title = Malls.importer.dmname
-                dislabel.text = Malls.importer.dmdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![0])
-                shopnumbercell = Malls.importer.dmfloors
-            case 1:
-                let images = UIImage(data: Malls.importer.dataFloorLc![indexPath.row]) // setting a var for our cell to contain picture for each row of cell
-                cell.floorButton.setBackgroundImage(images, for: .normal) // setting image from that var to each cell's button in each row
-                cell.floorName.text =  Malls.importer.lcfloornames![indexPath.row]// setting floornames label from global [var] to each cell of wach row
-                cell.shopButton.tag = indexPath.row // setting the shopbutton tag to indexpath.row which sets 3 int means 0...2
-                cell.shopButton.addTarget(self, action: #selector(shopstapped(_:)), for: .touchUpInside) // adding custom rtarget function refer to the func below
-                
-                cell.floorbuttonzoom.tag = indexPath.row // setting floorbutton's tag to indexpath.row which sets 3 int means 0...2
-                cell.floorbuttonzoom.addTarget(self, action: #selector(zoomTapped(_:)), for: .touchUpInside)// adding functionality i.e ibaaction to this button refer to line ()
-                navBar.title = Malls.importer.lcname
-                dislabel.text = Malls.importer.lcdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![1])
-                shopnumbercell = Malls.importer.lcfloors
-            case 2:
-                navBar.title = Malls.importer.ggname
-                dislabel.text = Malls.importer.ggdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![2])
-                shopnumbercell = Malls.importer.ggfloors
-            case 3:
-                navBar.title = Malls.importer.gpname
-                dislabel.text = Malls.importer.gpdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![3])
-                shopnumbercell = Malls.importer.gpfloors
-                
-            default:
-                return UITableViewCell()
-            }
+            
+               else if ViewController.myGlobalVar.region == "Noida"{
+              
+                   
+                    let task = URLSession.shared.dataTask(with: URL(string: url2)!, completionHandler: { [self]data, response, error in
+                        guard let data = data, error == nil else{
+                            print("somthin wrong")
+                            return
+                        }
+                        var result: detailn?
+                        do {
+                            result = try JSONDecoder().decode(detailn.self, from: data)
+                        } catch  {
+                            print("thisisthe\(error)")
+                        }
+                        
+                        guard let json = result else{
+                            
+                            return
+                        }
+                        
+                        Malls.importer.dmdis = json.dmdis
+                        Malls.importer.dmfloors = json.dmfloors
+                        Malls.importer.lcdis = json.lcdis
+                        Malls.importer.lcfloors = json.lcfloors
+                        Malls.importer.ggdis = json.ggdis
+                        Malls.importer.ggfloors = json.ggfloors
+                        Malls.importer.gpdis = json.gpdis
+                        Malls.importer.gpfloors = json.gpfloors
+                      
+                     
+                        
+                        switch Malls.importer.sender {
+                        case 0:
+                            DispatchQueue.main.async {
+                                navBar.title = Malls.importer.dmname
+                                dislabel.text = Malls.importer.dmdis
+                                mallimage.image = UIImage(data: Malls.importer.dataimg![0])
+                                cell.shopButton.isUserInteractionEnabled = true
+                                cell.shopButton.isEnabled = true
+                                navigation.isEnabled = true
+                                navigation.isUserInteractionEnabled = true
+                            }
+                        
+                            shopnumbercell = Malls.importer.dmfloors
+                        case 1:
+                           
+                            print(indexPath.row)
+                            if indexPath.row == 0 && counter == 0{
+                                let lcfloorurl = [URL(string: json.lcfloorimages[0])!,URL(string: json.lcfloorimages[1])!,URL(string: json.lcfloorimages[2])!]
+                                for i in 0...2{ // getting one by one data from the array we make below
+                                                    if let imageData = try? Data(contentsOf: lcfloorurl[i]){
+
+                                                        self.imageArrForLc?.append(imageData) // appending the data to our image array we made in starting of the file
+
+                                                    }
+                                }
+                                Malls.importer.dataFloorLc = imageArrForLc
+                                  //  print(Malls.importer.dataFloorLc)
+                                
+                               
+                            }
+                            if indexPath.row == 1 {
+                                counter = 2
+                            }
+                           
+                            Malls.importer.lcfloornames = json.lcfloornames
+                            let images = UIImage(data: Malls.importer.dataFloorLc![indexPath.row]) // setting a var for our cell to contain picture for each row of cell
+                            DispatchQueue.main.async {
+                                navBar.title = Malls.importer.lcname
+                                cell.floorButton.setBackgroundImage(images, for: .normal) // setting image from that var to each cell's button in each row
+                                cell.floorName.text =  Malls.importer.lcfloornames![indexPath.row]// setting floornames label from global [var] to each cell of wach row
+                                cell.shopButton.tag = indexPath.row // setting the shopbutton tag to indexpath.row which sets 3 int means 0...2
+                                cell.shopButton.addTarget(self, action: #selector(shopstapped(_:)), for: .touchUpInside) // adding custom rtarget function refer to the func below
+                                
+                                cell.floorbuttonzoom.tag = indexPath.row // setting floorbutton's tag to indexpath.row which sets 3 int means 0...2
+                                cell.floorbuttonzoom.addTarget(self, action: #selector(zoomTapped(_:)), for: .touchUpInside)// adding functionality i.e ibaaction to this button refer to line ()
+                                
+                                 
+                                  dislabel.text = Malls.importer.lcdis
+                                  mallimage.image = UIImage(data: Malls.importer.dataimg![1])
+                                cell.shopButton.isUserInteractionEnabled = true
+                                cell.shopButton.isEnabled = true
+                                navigation.isEnabled = true
+                                navigation.isUserInteractionEnabled = true
+                                
+                                
+                            }
+                         
+                         
+                          
+                           
+                         
+                            shopnumbercell = Malls.importer.lcfloors
+                        case 2:
+                            DispatchQueue.main.async {
+                            navBar.title = Malls.importer.ggname
+                            dislabel.text = Malls.importer.ggdis
+                            mallimage.image = UIImage(data: Malls.importer.dataimg![2])
+                            shopnumbercell = Malls.importer.ggfloors
+                                cell.shopButton.isUserInteractionEnabled = true
+                                cell.shopButton.isEnabled = true
+                                navigation.isEnabled = true
+                                navigation.isUserInteractionEnabled = true
+                            }
+                        case 3:
+                            DispatchQueue.main.async {
+                            navBar.title = Malls.importer.gpname
+                            dislabel.text = Malls.importer.gpdis
+                            mallimage.image = UIImage(data: Malls.importer.dataimg![3])
+                            shopnumbercell = Malls.importer.gpfloors
+                                cell.shopButton.isUserInteractionEnabled = true
+                                cell.shopButton.isEnabled = true
+                                navigation.isEnabled = true
+                                navigation.isUserInteractionEnabled = true
+                            }
+                        default:
+                            return //UITableViewCell()
+                        }
+                    })
+                    
+                    task.resume()
+
         }else if ViewController.myGlobalVar.region == "Delhi"{
-            
-            switch Malls.importer.sender {
-            case 0:
-                navBar.title = Malls.importer.vsname
-                dislabel.text = Malls.importer.vsdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![0])
-                shopnumbercell = Malls.importer.vsfloors
-            case 1:
-                navBar.title = Malls.importer.tcname
-                dislabel.text = Malls.importer.tcdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![1])
-                shopnumbercell = Malls.importer.tcfloors
-            case 2:
-                navBar.title = Malls.importer.ccname
-                dislabel.text = Malls.importer.ccdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![2])
-                shopnumbercell = Malls.importer.ccfloors
-            case 3:
-                navBar.title = Malls.importer.cmname
-                dislabel.text = Malls.importer.cmdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![3])
-                shopnumbercell = Malls.importer.cmfloors
-            case 4:
-                navBar.title = Malls.importer.dsname
-                dislabel.text = Malls.importer.dsdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![4])
-                shopnumbercell = Malls.importer.dsfloors
-            case 5:
-                navBar.title = Malls.importer.amname
-                dislabel.text = Malls.importer.amdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![5])
-                shopnumbercell = Malls.importer.amfloors
-            case 6:
-                navBar.title = Malls.importer.pmname
-                dislabel.text = Malls.importer.pmdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![6])
-                shopnumbercell = Malls.importer.pmfloors
-            case 7:
-                navBar.title = Malls.importer.scname
-                dislabel.text = Malls.importer.scdis
-                mallimage.image = UIImage(data: Malls.importer.dataimg![7])
-                shopnumbercell = Malls.importer.scfloors
+            let task = URLSession.shared.dataTask(with: URL(string: url3)!, completionHandler: { [self]data, response, error in
+                guard let data = data, error == nil else{
+                    print("somthin wrong")
+                    return
+                }
+                var result: detaild?
+                do {
+                    result = try JSONDecoder().decode(detaild.self, from: data)
+                } catch  {
+                    print("thisisthe\(error)")
+                }
                 
-            default:
-                return UITableViewCell()
-            }
+                guard let json = result else{
+                    
+                    return
+                }
+                
+                Malls.importer.vsdis = json.vsdis
+                Malls.importer.vsfloors = json.vsfloors
+                
+                Malls.importer.tcdis = json.tcdis
+                Malls.importer.tcfloors = json.tcfloors
+                
+                Malls.importer.ccdis = json.ccdis
+                Malls.importer.ccfloors = json.ccfloors
+               
+                Malls.importer.cmdis = json.cmdis
+                Malls.importer.cmfloors = json.cmfloors
+                
+                Malls.importer.scfloors = json.scfloors
+                Malls.importer.scdis = json.scdis
+                
+                Malls.importer.pmdis = json.pmdis
+                Malls.importer.pmfloors = json.pmfloors
+                
+                Malls.importer.amdis = json.amdis
+                Malls.importer.amfloors = json.amfloors
+                
+                Malls.importer.dsdis = json.dsdis
+                Malls.importer.dsfloors = json.dsfloors
+                
+               
+               
+                switch Malls.importer.sender {
+                case 0:
+                    DispatchQueue.main.async {
+                        navBar.title = Malls.importer.vsname
+                        dislabel.text = Malls.importer.vsdis
+                        mallimage.image = UIImage(data: Malls.importer.dataimg![0])
+                        shopnumbercell = Malls.importer.vsfloors
+                        cell.shopButton.isUserInteractionEnabled = true
+                        cell.shopButton.isEnabled = true
+                        navigation.isEnabled = true
+                        navigation.isUserInteractionEnabled = true
+                    }
+                    
+                case 1:
+                    DispatchQueue.main.async {
+                    navBar.title = Malls.importer.tcname
+                    dislabel.text = Malls.importer.tcdis
+                    mallimage.image = UIImage(data: Malls.importer.dataimg![1])
+                    shopnumbercell = Malls.importer.tcfloors
+                        cell.shopButton.isUserInteractionEnabled = true
+                        cell.shopButton.isEnabled = true
+                        navigation.isEnabled = true
+                        navigation.isUserInteractionEnabled = true
+                    }
+                case 2:
+                        DispatchQueue.main.async {
+                    navBar.title = Malls.importer.ccname
+                    dislabel.text = Malls.importer.ccdis
+                    mallimage.image = UIImage(data: Malls.importer.dataimg![2])
+                    shopnumbercell = Malls.importer.ccfloors
+                            cell.shopButton.isUserInteractionEnabled = true
+                            cell.shopButton.isEnabled = true
+                            navigation.isEnabled = true
+                            navigation.isUserInteractionEnabled = true
+                        }
+                case 3:
+                            DispatchQueue.main.async {
+                    navBar.title = Malls.importer.cmname
+                    dislabel.text = Malls.importer.cmdis
+                    mallimage.image = UIImage(data: Malls.importer.dataimg![3])
+                    shopnumbercell = Malls.importer.cmfloors
+                                cell.shopButton.isUserInteractionEnabled = true
+                                cell.shopButton.isEnabled = true
+                                navigation.isEnabled = true
+                                navigation.isUserInteractionEnabled = true
+                            }
+                case 4:
+                                DispatchQueue.main.async {
+                    navBar.title = Malls.importer.dsname
+                    dislabel.text = Malls.importer.dsdis
+                    mallimage.image = UIImage(data: Malls.importer.dataimg![4])
+                    shopnumbercell = Malls.importer.dsfloors
+                                    cell.shopButton.isUserInteractionEnabled = true
+                                    cell.shopButton.isEnabled = true
+                                    navigation.isEnabled = true
+                                    navigation.isUserInteractionEnabled = true
+                                }
+                case 5:
+                                    DispatchQueue.main.async {
+                    navBar.title = Malls.importer.amname
+                    dislabel.text = Malls.importer.amdis
+                    mallimage.image = UIImage(data: Malls.importer.dataimg![5])
+                    shopnumbercell = Malls.importer.amfloors
+                                        cell.shopButton.isUserInteractionEnabled = true
+                                        cell.shopButton.isEnabled = true
+                                        navigation.isEnabled = true
+                                        navigation.isUserInteractionEnabled = true
+                                    }
+                case 6:
+                                        DispatchQueue.main.async {
+                    navBar.title = Malls.importer.pmname
+                    dislabel.text = Malls.importer.pmdis
+                    mallimage.image = UIImage(data: Malls.importer.dataimg![6])
+                    shopnumbercell = Malls.importer.pmfloors
+                                            cell.shopButton.isUserInteractionEnabled = true
+                                            cell.shopButton.isEnabled = true
+                                            navigation.isEnabled = true
+                                            navigation.isUserInteractionEnabled = true
+                                        }
+                case 7:
+                                            DispatchQueue.main.async {
+                    navBar.title = Malls.importer.scname
+                    dislabel.text = Malls.importer.scdis
+                    mallimage.image = UIImage(data: Malls.importer.dataimg![7])
+                    shopnumbercell = Malls.importer.scfloors
+                                                cell.shopButton.isUserInteractionEnabled = true
+                                                cell.shopButton.isEnabled = true
+                                                navigation.isEnabled = true
+                                                navigation.isUserInteractionEnabled = true
+                                            }
+                    
+                default:
+                    return //UITableViewCell()
+                }
+              
+            })
+            task.resume()
+           
+            
+                
             
         }
         
-        
-        
-        
+       
         return cell
-        
+       
         
     }
     // function to turn string type address to a geolocation for directions in map
@@ -217,7 +469,7 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
         }
     }
     //func to open map app with the selected location , mapkit takes coordinated not as string address but as lat and lon so we convert our adress to geolocation previosly and later when we mention this function we put them in place of lat and lon rather than giving a line of address(its how mapkit knows where is the loaction)
-    public func openMapForPlace(lat:Double = 0, long:Double = 0, placeName:String = "") {
+     func openMapForPlace(lat:Double = 0, long:Double = 0, placeName:String = "") {
         let latitude: CLLocationDegrees = lat
         let longitude: CLLocationDegrees = long
         
@@ -233,7 +485,7 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
         mapItem.name = placeName
         mapItem.openInMaps(launchOptions: options)
     }
-    @objc func shopstapped(_ sender: UIButton){ // ok so this function doesnt need explanation beause i dont know how to but this is hardcoded to get hold of button tapped in each and every indiviual cells in the table view with the help of sender tag-- this func is a target func targeted on line (110)
+        @objc func shopstapped(_ sender: UIButton){ // ok so this function doesnt need explanation beause i dont know how to but this is hardcoded to get hold of button tapped in each and every indiviual cells in the table view with the help of sender tag-- this func is a target func targeted on line (110)
         
         let button = sender.tag
         
@@ -242,7 +494,7 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
         
     }
     //functionality i.e. ibaaction for our floorbutton when its tapped refer to line()
-    @objc func zoomTapped(_ sender: UIButton){
+        @objc func zoomTapped(_ sender: UIButton){
         let zoomButton = sender.tag // this is equal to the tag of the button tapped whoch would be numbers from indexpath.row
         
         Malls.importer.zoomsender = zoomButton // setting that tag to global level
@@ -291,3 +543,4 @@ class DetailView: UIViewController, UITableViewDelegate,  UITableViewDataSource 
     }
     
 }
+
